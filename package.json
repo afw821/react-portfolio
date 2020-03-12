@@ -1,0 +1,20 @@
+{
+  "name": "react-portfolio-site",
+  "version": "1.0.0",
+  "description": "Alex's Updated Portfolio Site",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Watkins",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "joi": "^14.3.1",
+    "mongoose": "^5.9.4",
+    "nodemailer": "^6.4.5"
+  }
+}
