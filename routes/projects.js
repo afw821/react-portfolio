@@ -20,9 +20,10 @@ router.post('/', ash(async (req, res) => {
         deployedUrl: deployedUrl,
         gitHubUrl: gitHubUrl
     });
-    const result = await project.Save();
 
-    res.send({ result, project });
+    await project.save();
+
+    res.send({ project });
 }));
 
 module.exports = router;

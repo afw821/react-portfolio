@@ -5,6 +5,10 @@ const path = require("path");
 //app.use(express.static(path.join(__dirname, "client")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+//startup
+require('./startup/routes')(app);
+require('./startup/db')();
 
+//server
 const PORT = process.env.PORT || 8888;
 app.listen(PORT, () => console.log(`App listening on PORT: ${PORT}`));
