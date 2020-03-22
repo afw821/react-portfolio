@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <div className="container">
+      <div className="container-fluid">
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/login" component={LoginForm} />
