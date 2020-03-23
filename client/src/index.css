@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.account-login-form {
+  border: 1px solid lightgray;
+  background-color: white;
+}
+
+.navbar {
+  background-color: #fdf9f3;
+  color: black;
+}
+.bg-color {
+  background-color: whitesmoke;
+}

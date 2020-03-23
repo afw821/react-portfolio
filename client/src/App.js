@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from './components/navBar'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import Home from './components/home'
-import LoginForm from './components/login'
+import LoginForm from './components/loginForm'
 import About from './components/about'
 import Contact from './components/contact'
 import Projects from './components/projects'
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <div className="container-fluid">
+      <div className="container-fluid bg-color">
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/login" component={LoginForm} />
