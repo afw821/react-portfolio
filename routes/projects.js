@@ -5,9 +5,10 @@ const router = express.Router();
 
 router.get('/', ash(async (req, res) => {
     const projects = await Project.find()
-        .sort({ title: 'asc' })
+        .sort({ title: 'asc' });
 
-    res.send(projects);
+    res.header('Access-Control-Allow-Origin', '*').send(projects);
+
 }));
 
 router.post('/', ash(async (req, res) => {

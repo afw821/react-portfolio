@@ -6,9 +6,9 @@ const path = require("path");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //startup
-require('./startup/routes')(app);
-require('./startup/db')();
+require("./startup/routes")(app);
+require("./startup/db")();
 
 //server
-const PORT = process.env.PORT || 8888;
+const PORT = process.env.PORT || 3900;
 app.listen(PORT, () => console.log(`App listening on PORT: ${PORT}`));
