@@ -24,6 +24,10 @@ const Project = mongoose.model('Projects', new mongoose.Schema({
     gitHubUrl: {
         type: String,
         required: true
+    },
+    imgUrl: {
+        type: String,
+        required: false
     }
 }));
 

@@ -1,10 +1,45 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class ProjectsCard extends Component {
-
-    render() {
-        return (null);
-    }
+  render() {
+    const { projects, pageSize, currentPage, searchQuery } = this.props;
+    return (
+      <div className="row">
+        {projects.map((project) => (
+          <div className="col-6 mb-4">
+            <div className="card min-height">
+              <div className="card-body theme-color">
+                <div className="row">
+                  <div className="col-8">
+                    <h5 className="card-title">{project.title}</h5>
+                    <p className="card-text">
+                      {project.technologies.map((technology) => (
+                        <span className="mr-2">{technology}</span>
+                      ))}
+                    </p>
+                    <p className="card-text">{project.description}</p>
+                    <Link
+                      to={`/projects/${project._id}`}
+                      className="btn btn-info"
+                    >
+                      Details
+                    </Link>
+                  </div>
+                  <div className="col-4">
+                    <img
+                      className="picture-fix"
+                      src={project.imgUrl}
+                    ></img>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
 
 export default ProjectsCard;

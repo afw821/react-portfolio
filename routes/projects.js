@@ -12,14 +12,15 @@ router.get('/', ash(async (req, res) => {
 }));
 
 router.post('/', ash(async (req, res) => {
-    const { title, description, technologies, deployedUrl, gitHubUrl } = req.body;
+    const { title, description, technologies, deployedUrl, gitHubUrl, imgUrl } = req.body;
 
     let project = new Project({
         title: title,
         description: description,
         technologies: technologies,
         deployedUrl: deployedUrl,
-        gitHubUrl: gitHubUrl
+        gitHubUrl: gitHubUrl,
+        imgUrl: imgUrl
     });
 
     await project.save();
