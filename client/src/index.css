@@ -11,7 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.account-login-form {
+.login-form {
   border: 1px solid lightgray;
   background-color: white;
 }
@@ -33,6 +33,6 @@ code {
   max-height: 200px;
   max-width: 225px;
 }
-.min-height{
-  min-height:244px;
+.min-height {
+  min-height: 244px;
 }

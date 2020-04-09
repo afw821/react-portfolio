@@ -4,7 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./components/home";
 import LoginForm from "./components/loginForm";
 import About from "./components/about";
-import Contact from "./components/contact";
+import ContactForm from "./components/contactForm";
 import Projects from "./components/projects";
 import NotFound from "./components/notFound";
 import ProjectDetails from "./components/projectDetails";
@@ -19,7 +19,7 @@ function App() {
           <Route path="/home" component={Home} />
           <Route path="/login" component={LoginForm} />
           <Route path="/about" component={About} />
-          <Route path="/contact" component={Contact} />
+          <Route path="/contact" component={ContactForm} />
           <Route path="/projects" component={Projects} />
           <Route path="/not-found" component={NotFound}></Route>
           <Redirect from="/" exact to="/home" />

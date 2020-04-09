@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import JumboTron from "./common/jumbotron";
-import Input from "./common/input";
 import Joi from "joi-browser";
 import Form from "./common/form";
 
@@ -36,7 +35,7 @@ class LoginForm extends Form {
           <div className="col-4"></div>
           <div className="col-4">
             <form
-              className="pb-5 pl-5 pr-5 pt-4 account-login-form"
+              className="pb-5 pl-5 pr-5 pt-4 login-form"
               onSubmit={this.handleSubmit}
             >
               {this.renderInput("username", "Username")}
