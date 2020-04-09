@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class ProjectsCard extends Component {
   render() {
-    const { projects, pageSize, currentPage, searchQuery } = this.props;
+    const { projects } = this.props;
     return (
       <div className="row">
         {projects.map((project) => (
