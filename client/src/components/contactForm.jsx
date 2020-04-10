@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import JumboTron from "./common/jumbotron";
 import Form from "./common/form";
 import Joi from "joi-browser";
+import { sendMessage } from '../services/emailService';
 
 class ContactForm extends Form {
   state = {
@@ -21,6 +22,8 @@ class ContactForm extends Form {
 
   doSubmit = async () => {
     try {
+      const { data } = this.state;
+      await sendMessage(data.email, data.message, data.name);
       console.log("Form Submitted");
     } catch (ex) {
       console.log("error", ex);
