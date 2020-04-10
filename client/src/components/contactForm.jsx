@@ -23,8 +23,15 @@ class ContactForm extends Form {
   doSubmit = async () => {
     try {
       const { data } = this.state;
-      await sendMessage(data.email, data.message, data.name);
-      console.log("Form Submitted");
+      const result = await sendMessage(data.email, data.message, data.name);
+      if (result) {
+        const data = {
+          name: "",
+          email: "",
+          message: "",
+        }
+        this.setState({ data });
+      }
     } catch (ex) {
       console.log("error", ex);
     }
