@@ -16,6 +16,9 @@ axios.interceptors.response.use(null, (error) => {
 function setJwt(jwt) {
   axios.defaults.headers.common["x-auth-token"] = jwt;
 }
+function setAccessOrigin() {
+  axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+}
 
 export default {
   get: axios.get,
@@ -23,4 +26,5 @@ export default {
   put: axios.put,
   delete: axios.delete,
   setJwt,
+  setAccessOrigin
 };
