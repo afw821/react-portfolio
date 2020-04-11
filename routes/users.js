@@ -3,6 +3,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const ash = require('express-async-handler');
+const auth = require("../middleware/auth");
 
 router.post('/', ash(async (req, res) => {
     const { name, email, password } = req.body;
@@ -24,6 +25,11 @@ router.post('/', ash(async (req, res) => {
     await user.save();
 
     res.send(user);
+}));
+
+router.get('/', auth, ash(async function (req, res) {
+    const users = await User.find();
+    res.send(users);
 }));
 
 module.exports = router;

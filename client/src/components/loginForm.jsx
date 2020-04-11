@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import JumboTron from "./common/jumbotron";
 import Joi from "joi-browser";
 import Form from "./common/form";
+import { login, getCurrentUser } from "../services/authService";
 
 class LoginForm extends Form {
   state = {
@@ -16,9 +17,15 @@ class LoginForm extends Form {
 
   doSubmit = async () => {
     try {
-      console.log("Logged in");
+      const { data } = this.state;
+      await login(data.username, data.password);
+      window.location = "/projects/form";
     } catch (ex) {
-      console.log("error", ex);
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.username = ex.response.data;
+        this.setState({ errors });
+      }
     }
   };
 
