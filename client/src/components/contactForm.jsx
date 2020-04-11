@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import JumboTron from "./common/jumbotron";
 import Form from "./common/form";
 import Joi from "joi-browser";
-import { sendMessage } from '../services/emailService';
+import { Button, Modal } from "react-bootstrap";
+import { sendMessage } from "../services/emailService";
+import { Model } from "mongoose";
 
 class ContactForm extends Form {
   state = {
@@ -12,6 +14,7 @@ class ContactForm extends Form {
       message: "",
     },
     errors: {},
+    show: false,
   };
 
   schema = {
@@ -29,12 +32,16 @@ class ContactForm extends Form {
           name: "",
           email: "",
           message: "",
-        }
-        this.setState({ data });
+        };
+        this.setState({ data, show: true });
       }
     } catch (ex) {
       console.log("error", ex);
     }
+  };
+
+  handleModalClick = () => {
+    this.setState({ show: !this.state.show });
   };
 
   render() {
@@ -46,6 +53,13 @@ class ContactForm extends Form {
     return (
       <>
         <JumboTron message={text.message} description={text.description} />
+        <Modal show={this.state.show}>
+          <Modal.Header>Thank You</Modal.Header>
+          <Modal.Body>Your Message Has Successfully Been Sent</Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => this.handleModalClick()}>Close</Button>
+          </Modal.Footer>
+        </Modal>
         <div className="row">
           <div className="col-4"></div>
           <div className="col-4">

@@ -36,3 +36,6 @@ code {
 .min-height {
   min-height: 244px;
 }
+.hide {
+  display: none;
+}
