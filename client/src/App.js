@@ -22,10 +22,13 @@ class App extends Component {
 
   render() {
     const user = this.state;
+    const h100 = {
+      height: "calc(92vh)",
+    };
     return (
       <>
-        <NavBar />
-        <div className="container-fluid bg-color">
+        <NavBar user={user} />
+        <div className="container-fluid bg-color" style={h100}>
           <Switch>
             <ProtectedRoute
               path="/projects/form"

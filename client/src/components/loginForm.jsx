@@ -31,8 +31,8 @@ class LoginForm extends Form {
 
   render() {
     const text = {
-      message: "Administrator Login",
-      description: "Admins can login here to add and remove projects",
+      message: "Project Manager",
+      description: "Administrator login to manage projects",
     };
 
     return (

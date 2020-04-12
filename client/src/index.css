@@ -39,3 +39,6 @@ code {
 .hide {
   display: none;
 }
+.h-100 {
+  height: calc(100vh);
+}
