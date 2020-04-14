@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import Joi from "joi-browser";
 import Input from "./input";
 import TextArea from "./textArea";
-
+import CheckBox from "./checkbox";
 class Form extends Component {
   state = {
     data: {},
     errors: {},
+    technologies: []
   };
 
   validateProperty = ({ name, value }) => {
@@ -46,6 +47,11 @@ class Form extends Component {
     this.setState({ data, errors });
   };
 
+  handleCheckChange = ({ currentTarget: input }) => {
+    console.log('input check change', input);
+
+  }
+
   renderButton(label) {
     return (
       <button disabled={this.validate()} className="btn btn-primary btn-sm">
@@ -67,6 +73,11 @@ class Form extends Component {
       />
     );
   }
+  renderCheckbox(name, label, type) {
+    const { data, errors } = this.state;
+    return <CheckBox />;
+  }
+
   renderTextArea(name, label, type, rows) {
     const { data, errors } = this.state;
     return (

@@ -1,7 +1,8 @@
-import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import React from "react";
+import { NavLink, Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = (props) => {
+  console.log("navbar props", props);
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <Link className="navbar-brand" to="/">
@@ -18,11 +19,14 @@ const NavBar = () => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
+      <div
+        className="collapse navbar-collapse d-flex justify-content-between"
+        id="navbarNav"
+      >
         <ul className="navbar-nav">
           <li className="nav-item">
             <NavLink className="nav-link" to="/home">
-              Home<span className="sr-only">(current)</span>
+              Home
             </NavLink>
           </li>
           <li className="nav-item">
@@ -40,15 +44,33 @@ const NavBar = () => {
               Contact
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/login">
-              Login
-            </NavLink>
-          </li>
+          {props.user && (
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/project-manager">
+                Project Manager
+              </NavLink>
+            </li>
+          )}
+        </ul>
+        <ul className="navbar-nav mr-4">
+          {!props.user && (
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/login">
+                Login
+              </NavLink>
+            </li>
+          )}
+          {props.user && (
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/logout">
+                Logout
+              </NavLink>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

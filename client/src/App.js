@@ -11,9 +11,11 @@ import ProjectDetails from "./components/projectDetails";
 import auth from "./services/authService";
 import ProtectedRoute from "./components/common/protectedRoute";
 import ProjectForm from "./components/projectForm";
-
+import Logout from "./components/logout";
 class App extends Component {
-  state = {};
+  state = {
+    user: null,
+  };
 
   componentDidMount() {
     const user = auth.getCurrentUser();
@@ -21,7 +23,7 @@ class App extends Component {
   }
 
   render() {
-    const user = this.state;
+    const { user } = this.state;
     const h100 = {
       height: "calc(92vh)",
     };
@@ -31,13 +33,14 @@ class App extends Component {
         <div className="container-fluid bg-color" style={h100}>
           <Switch>
             <ProtectedRoute
-              path="/projects/form"
+              path="/project-manager"
               exact
               component={ProjectForm}
             />
             <Route path="/projects/:id" component={ProjectDetails} />
             <Route path="/home" component={Home} />
             <Route path="/login" component={LoginForm} />
+            <Route path="/logout" component={Logout} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={ContactForm} />
             <Route path="/projects" component={Projects} />
