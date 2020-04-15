@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <>
         <NavBar user={user} />
-        <div className="container-fluid bg-color" style={h100}>
+        <div className="container-fluid bg-color pt-3" style={h100}>
           <Switch>
             <ProtectedRoute
               path="/project-manager"

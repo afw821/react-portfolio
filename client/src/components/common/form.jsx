@@ -63,7 +63,7 @@ class Form extends Component {
   };
 
   renderButton(label, isValidator) {
-    return <button className="btn btn-primary btn-sm">{label}</button>;
+    return <button className="btn btn-info btn-sm">{label}</button>;
   }
 
   renderInput(name, label, type = "text") {

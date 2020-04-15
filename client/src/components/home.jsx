@@ -4,7 +4,7 @@ import Resume from "../assests/Resume.pdf";
 
 const Home = () => {
   const text = {
-    message: "Welcome to My Portfolio website",
+    message: "Welcome to My Portfolio Website",
     description:
       "Below are links to download my resume, navigate to my GitHub and my LinkedIn pages",
   };

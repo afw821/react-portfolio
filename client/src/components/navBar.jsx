@@ -2,9 +2,8 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 
 const NavBar = (props) => {
-  console.log("navbar props", props);
   return (
-    <nav className="navbar navbar-expand-lg navbar-light">
+    <nav className="navbar top-nav navbar-expand-lg navbar-dark">
       <Link className="navbar-brand" to="/">
         Alex Watkins
       </Link>
@@ -26,28 +25,28 @@ const NavBar = (props) => {
         <ul className="navbar-nav">
           <li className="nav-item">
             <NavLink className="nav-link" to="/home">
-              Home
+              HOME
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/about">
-              About
+              ABOUT
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/projects">
-              Projects
+              PROJECTS
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/contact">
-              Contact
+              CONTACT
             </NavLink>
           </li>
           {props.user && (
             <li className="nav-item">
               <NavLink className="nav-link" to="/project-manager">
-                Project Manager
+                PROJECT MANAGER
               </NavLink>
             </li>
           )}
@@ -56,14 +55,14 @@ const NavBar = (props) => {
           {!props.user && (
             <li className="nav-item">
               <NavLink className="nav-link" to="/login">
-                Login
+                LOGIN
               </NavLink>
             </li>
           )}
           {props.user && (
             <li className="nav-item">
               <NavLink className="nav-link" to="/logout">
-                Logout
+                LOGOUT
               </NavLink>
             </li>
           )}
