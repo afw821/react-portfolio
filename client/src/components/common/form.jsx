@@ -7,7 +7,8 @@ class Form extends Component {
   state = {
     data: {},
     errors: {},
-    technologies: []
+    selectedTechnologies: [],
+    technologies: [],
   };
 
   validateProperty = ({ name, value }) => {
@@ -29,7 +30,9 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log("this handle submit");
     const errors = this.validate();
+    console.log("errors i handle submit", errors);
     this.setState({ errors: errors || {} });
     if (errors) return;
     this.doSubmit();
@@ -48,16 +51,19 @@ class Form extends Component {
   };
 
   handleCheckChange = ({ currentTarget: input }) => {
-    console.log('input check change', input);
+    const newTechnology = input.value;
+    const isChecked = input.checked;
+    const selected = [...this.state.selectedTechnologies];
+    if (isChecked) selected.push(newTechnology);
+    else {
+      const index = selected.indexOf(newTechnology);
+      selected.splice(index, 1);
+    }
+    this.setState({ selectedTechnologies: selected });
+  };
 
-  }
-
-  renderButton(label) {
-    return (
-      <button disabled={this.validate()} className="btn btn-primary btn-sm">
-        {label}
-      </button>
-    );
+  renderButton(label, isValidator) {
+    return <button className="btn btn-primary btn-sm">{label}</button>;
   }
 
   renderInput(name, label, type = "text") {
@@ -73,9 +79,15 @@ class Form extends Component {
       />
     );
   }
-  renderCheckbox(name, label, type) {
+  renderCheckbox(technologies, label) {
     const { data, errors } = this.state;
-    return <CheckBox />;
+    return (
+      <CheckBox
+        technologies={technologies}
+        label={label}
+        onChange={this.handleCheckChange}
+      />
+    );
   }
 
   renderTextArea(name, label, type, rows) {

@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import JumboTron from "./common/jumbotron";
 import Form from "./common/form";
 import Joi from "joi-browser";
-import { Button, Modal } from "react-bootstrap";
 import { sendMessage } from "../services/emailService";
-import { Model } from "mongoose";
+import PopUpModal from "./common/modal";
 
 class ContactForm extends Form {
   state = {
@@ -53,13 +52,12 @@ class ContactForm extends Form {
     return (
       <>
         <JumboTron message={text.message} description={text.description} />
-        <Modal show={this.state.show}>
-          <Modal.Header>Thank You</Modal.Header>
-          <Modal.Body>Your Message Has Successfully Been Sent</Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => this.handleModalClick()}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+        <PopUpModal
+          show={this.state.show}
+          header="Thank You"
+          body="Your Message Has Successfully Been Sent"
+          onClose={this.handleModalClick}
+        />
         <div className="row">
           <div className="col-4"></div>
           <div className="col-4">

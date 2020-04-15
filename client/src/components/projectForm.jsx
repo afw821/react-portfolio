@@ -2,27 +2,29 @@ import React, { Component } from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
 import JumboTron from "./common/jumbotron";
-import { getTechnologies } from './../services/technologyService';
+import { getTechnologies } from "./../services/technologyService";
 import { addProject } from "../services/projectService";
+import PopUpModal from "./common/modal";
 
 class ProjectForm extends Form {
   state = {
     data: {
       title: "",
       description: "",
-      technologies: [],
       deployedUrl: "",
       gitHubUrl: "",
       imgUrl: "",
     },
     errors: {},
+    selectedTechnologies: [],
     technologies: [],
+    show: false,
   };
 
   schema = {
     title: Joi.string().required().label("Title"),
     description: Joi.string().required().label("Description"),
-    technologies: Joi.string().required().label("Technologies"),
+    // technologies: Joi.string().required().label("Technologies"),
     deployedUrl: Joi.string().label("Deployed Link"),
     gitHubUrl: Joi.string().required().label("GitHub Link"),
     imgUrl: Joi.string().required().label("Image Url"),
@@ -36,12 +38,39 @@ class ProjectForm extends Form {
 
   doSubmit = async () => {
     try {
-      const { title, description, technologies, deployedUrl, gitHubUrl, imgUrl } = this.state.data;
-      const result = await addProject();
-    } catch (ex) {
+      const {
+        title,
+        description,
+        deployedUrl,
+        gitHubUrl,
+        imgUrl,
+      } = this.state.data;
+      const { selectedTechnologies } = this.state;
+      const { data } = await addProject(
+        title,
+        description,
+        selectedTechnologies,
+        deployedUrl,
+        gitHubUrl,
+        imgUrl
+      );
+      if (data.status)
+        this.setState({
+          data: {
+            title: "",
+            description: "",
+            deployedUrl: "",
+            gitHubUrl: "",
+            imgUrl: "",
+          },
+          show: true,
+        });
+    } catch (ex) {}
+  };
 
-    }
-  }
+  handleModalClick = () => {
+    this.setState({ show: !this.state.show });
+  };
   render() {
     const text = {
       message: "Project Manager",
@@ -51,6 +80,12 @@ class ProjectForm extends Form {
     return (
       <>
         <JumboTron message={text.message} description={text.description} />
+        <PopUpModal
+          show={this.state.show}
+          header="Thank You"
+          body="Project Successfully Added"
+          onClose={this.handleModalClick}
+        />
         <div className="row">
           <div className="col-4"></div>
           <div className="col-4">
@@ -60,20 +95,7 @@ class ProjectForm extends Form {
             >
               {this.renderInput("title", "Title")}
               {this.renderTextArea("description", "Description", "text", 5)}
-              {technologies.map(t => (
-                <div key={t._id} className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    onChange={this.handleCheckChange}
-                    type="checkbox"
-                    id={t._id}
-                    value={t.name}
-                  />
-                  <label className="form-check-label" htmlFor={t._id}>
-                    {t.name}
-                  </label>
-                </div>
-              ))}
+              {this.renderCheckbox(technologies, "Technology")}
               {this.renderInput("deployedUrl", "Deployed Link")}
               {this.renderInput("gitHubUrl", "GitHub Link")}
               {this.renderInput("imgUrl", "Image Link")}
