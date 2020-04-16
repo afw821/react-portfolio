@@ -39,9 +39,16 @@ class Projects extends Component {
   };
 
   handleDelete = async (id) => {
-    console.log(`project ${id} deleted!`);
-    const result = await deleteProject(id);
-    console.log('result delete', result);
+    const originalProjects = this.state.projects;
+    const projects = originalProjects.filter(p => p._id !== id);
+    this.setState({ projects });
+    try {
+      await deleteProject(id);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404) {
+        this.setState({ projects: originalProjects });
+      }
+    }
   };
 
   render() {
