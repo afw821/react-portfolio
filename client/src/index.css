@@ -13,6 +13,9 @@ body {
   font-weight: bolder;
   height: 100px;
   font-size: 22px;
+  position: sticky !important;
+  top: 0;
+  z-index: 20000;
 }
 
 /* code {

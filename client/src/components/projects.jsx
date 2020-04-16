@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import JumboTron from "./common/jumbotron";
 import ProjectsCard from "./projectsCard";
 import { paginate } from "../utils/paginate";
-import { getProjects } from "../services/projectService";
+import { getProjects, deleteProject } from "../services/projectService";
 import Paginator from "./common/paginator";
 import _ from "lodash";
 
@@ -38,6 +38,12 @@ class Projects extends Component {
     return { totalCount: filter.length, data: projects };
   };
 
+  handleDelete = async (id) => {
+    console.log(`project ${id} deleted!`);
+    const result = await deleteProject(id);
+    console.log('result delete', result);
+  };
+
   render() {
     const {
       projects: allProjects,
@@ -45,6 +51,7 @@ class Projects extends Component {
       currentPage,
       searchQuery,
     } = this.state;
+    const { user } = this.props;
     const text = {
       message: "My Projects",
       description: "Below is a complete list of the projects I have worked on",
@@ -54,7 +61,7 @@ class Projects extends Component {
     return (
       <>
         <JumboTron message={text.message} description={text.description} />
-        <ProjectsCard projects={projects} />
+        <ProjectsCard projects={projects} onDelete={this.handleDelete} user={user} />
         <Paginator
           itemsCount={totalCount}
           pageSize={pageSize}

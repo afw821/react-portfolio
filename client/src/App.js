@@ -43,7 +43,10 @@ class App extends Component {
             <Route path="/logout" component={Logout} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={ContactForm} />
-            <Route path="/projects" component={Projects} />
+            <Route
+              path="/projects"
+              render={(props) => <Projects {...props} user={this.state.user} />}
+            />
             <Route path="/not-found" component={NotFound}></Route>
             <Redirect from="/" exact to="/home" />
             <Redirect to="/not-found" />

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class ProjectsCard extends Component {
   render() {
-    const { projects } = this.props;
+    const { projects, onDelete, user } = this.props;
     return (
       <div className="row">
         {projects.map((project) => (
@@ -21,16 +21,20 @@ class ProjectsCard extends Component {
                     <p className="card-text">{project.description}</p>
                     <Link
                       to={`/projects/${project._id}`}
-                      className="btn btn-info"
+                      className="btn btn-info mr-4"
                     >
                       Details
                     </Link>
+                    {user && user.isAdmin && <button
+                      type="button"
+                      onClick={() => onDelete(project._id)}
+                      className="btn btn-danger"
+                    >
+                      Delete
+                    </button>}
                   </div>
                   <div className="col-4">
-                    <img
-                      className="picture-fix"
-                      src={project.imgUrl}
-                    ></img>
+                    <img className="picture-fix" src={project.imgUrl}></img>
                   </div>
                 </div>
               </div>

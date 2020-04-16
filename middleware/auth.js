@@ -9,7 +9,7 @@ function auth(req, res, next) {
         res.token = token;
         next();
     } catch (ex) {
-        res.status(400).send('Invalid acces token');
+        res.status(400).send('Invalid access token');
     }
 }
 

@@ -1,5 +1,7 @@
 const { Project } = require("../models/project");
 const ash = require("express-async-handler");
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
 const express = require("express");
 const router = express.Router();
 
@@ -26,6 +28,15 @@ router.post('/', ash(async (req, res) => {
     await project.save();
 
     res.send({ status: true, project });
+}));
+
+router.delete('/:id', [auth, admin], ash(async (req, res) => {
+    console.log('req.params.id', req.params.id);
+    const id = req.params.id;
+    const project = await Project.findByIdAndRemove(id);
+    console.log('project', project);
+    if (!project) return status(404).send('Movie not found.');
+    res.send({ status: true });
 }));
 
 module.exports = router;

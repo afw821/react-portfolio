@@ -14,6 +14,9 @@ export function addProject(title, description, technologies, deployedUrl, gitHub
     gitHubUrl,
     imgUrl
   }
-  console.log('projects serive obj', obj);
   return http.post(apiUrl + "/projects", obj);
+}
+
+export function deleteProject(id) {
+  return http.delete(apiUrl + `/projects/${id}`);
 }
