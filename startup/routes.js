@@ -4,7 +4,7 @@ const messages = require("../routes/messages");
 const users = require("../routes/users");
 const auth = require("../routes/auth");
 const technologies = require("../routes/technologies");
-
+//test comment
 module.exports = function (app) {
   app.use("/api/projects", projects);
   app.use("/api/nodeMailer", nodeMailer);
