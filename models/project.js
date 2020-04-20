@@ -11,7 +11,7 @@ const Project = mongoose.model('Projects', new mongoose.Schema({
         type: String,
         required: true,
         minlength: 5,
-        maxlength: 255
+        maxlength: 500
     },
     technologies: {
         type: [String],
