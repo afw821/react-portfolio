@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
-const dotenv = require("dotenv");
+require("dotenv").config();
 
-dotenv.config();
+
 
 function sendEmail(email, message, name) {
   console.log('made it to send email function', email, message, name);
@@ -9,7 +9,7 @@ function sendEmail(email, message, name) {
     service: "gmail",
     auth: {
       user: "afw821@gmail.com",
-      pass: "jysfmjxtxpazqnal",
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
 
