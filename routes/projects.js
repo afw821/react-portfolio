@@ -30,6 +30,14 @@ router.post('/', ash(async (req, res) => {
     res.send({ status: true, project });
 }));
 
+router.get('/:id', ash(async (req, res) => {
+    const project = await Project.findById(req.params.id);
+    console.log('project by id', project);
+    if (!project) return status(404).send('Project not found');
+
+    res.json(project);
+}));
+
 router.delete('/:id', [auth, admin], ash(async (req, res) => {
     console.log('req.params.id', req.params.id);
     const id = req.params.id;

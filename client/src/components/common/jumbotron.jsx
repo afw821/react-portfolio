@@ -13,7 +13,7 @@ const JumboTron = (props) => {
         {props.resume && (
           <div className="d-flex justify-content-center">
             <a href={props.resume} download>
-              <button className="btn btn-info btn-sm">My Resume</button>
+              <button className="btn btn-info"> Download My Resume</button>
             </a>
           </div>
         )}

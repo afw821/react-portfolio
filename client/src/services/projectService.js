@@ -2,7 +2,7 @@ import http from "./httpService";
 import { apiUrl, deployedApiUrl } from "../config.json";
 
 export function getProjects() {
-  return http.get(deployedApiUrl + "/projects");
+  return http.get(apiUrl + "/projects");
 }
 
 export function addProject(title, description, technologies, deployedUrl, gitHubUrl, imgUrl) {
@@ -14,9 +14,14 @@ export function addProject(title, description, technologies, deployedUrl, gitHub
     gitHubUrl,
     imgUrl
   }
-  return http.post(deployedApiUrl + "/projects", obj);
+  return http.post(apiUrl + "/projects", obj);
+}
+
+export function getProjectById(projectId) {
+  return http.get(apiUrl + `/projects/${projectId}`);
+
 }
 
 export function deleteProject(id) {
-  return http.delete(deployedApiUrl + `/projects/${id}`);
+  return http.delete(apiUrl + `/projects/${id}`);
 }

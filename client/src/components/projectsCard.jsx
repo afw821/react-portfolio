@@ -7,7 +7,7 @@ class ProjectsCard extends Component {
     return (
       <div className="row">
         {projects.map((project) => (
-          <div className="col-6 mb-4">
+          <div key={project._id} className="col-6 mb-4">
             <div className="card min-height">
               <div className="card-body theme-color">
                 <div className="row">
@@ -15,7 +15,9 @@ class ProjectsCard extends Component {
                     <h5 className="card-title">{project.title}</h5>
                     <p className="card-text">
                       {project.technologies.map((technology) => (
-                        <span className="mr-2">{technology}</span>
+                        <span key={technology._id} className="mr-2">
+                          {technology}
+                        </span>
                       ))}
                     </p>
                     <p className="card-text">{project.description}</p>
@@ -25,13 +27,15 @@ class ProjectsCard extends Component {
                     >
                       Details
                     </Link>
-                    {user && user.isAdmin && <button
-                      type="button"
-                      onClick={() => onDelete(project._id)}
-                      className="btn btn-danger"
-                    >
-                      Delete
-                    </button>}
+                    {user && user.isAdmin && (
+                      <button
+                        type="button"
+                        onClick={() => onDelete(project._id)}
+                        className="btn btn-danger"
+                      >
+                        Delete
+                      </button>
+                    )}
                   </div>
                   <div className="col-4">
                     <img className="picture-fix" src={project.imgUrl}></img>
