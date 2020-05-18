@@ -17,7 +17,6 @@ app.use(function (req, res, next) {
 require("./startup/routes")(app);
 require("./startup/db")();
 
-
 // Right before your app.listen(), add this:
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));

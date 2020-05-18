@@ -86,8 +86,7 @@ class ProjectDetails extends Component {
                 </MDBCardBody>
               </MDBCard>
               <MDBCardText>
-                Sed ut perspiciatis unde omnis iste natus sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam.
+                {project.description}
               </MDBCardText>
               <a href="#!" className="icons-sm li-ic ml-1">
                 <MDBIcon fab icon="linkedin-in" />

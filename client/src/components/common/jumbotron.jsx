@@ -2,7 +2,7 @@ import React from "react";
 
 const JumboTron = (props) => {
   return (
-    <div className="jumbotron jumbotron-fluid">
+    <div style={{ backgroundColor: "whitesmoke" }} className="jumbotron jumbotron-fluid">
       <div className="container">
         <h1 className="display-4 d-flex justify-content-center" id="message">
           {props.message}
