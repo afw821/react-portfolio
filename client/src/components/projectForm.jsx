@@ -87,10 +87,9 @@ class ProjectForm extends Form {
           onClose={this.handleModalClick}
         />
         <div className="row">
-          <div className="col-4"></div>
-          <div className="col-4">
+          <div className="col d-flex justify-content-center">
             <form
-              className="pb-5 pl-5 pr-5 pt-4 login-form"
+              className="pb-5 pl-5 pr-5 pt-4 login-form form-width"
               onSubmit={this.handleSubmit}
             >
               {this.renderInput("title", "Title")}
@@ -99,7 +98,11 @@ class ProjectForm extends Form {
               {this.renderInput("deployedUrl", "Deployed Link")}
               {this.renderInput("gitHubUrl", "GitHub Link")}
               {this.renderInput("imgUrl", "Image Link")}
-              {this.renderButton("Submit")}
+              <div className="row">
+                <div className="col d-flex justify-content-center">
+                  {this.renderButton("Submit")}
+                </div>
+              </div>
             </form>
           </div>
         </div>

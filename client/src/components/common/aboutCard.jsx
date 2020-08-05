@@ -8,7 +8,7 @@ const aboutCard = () => {
                 waves />
             <MDBCardBody>
                 <MDBCardTitle>About Me</MDBCardTitle>
-                <MDBCardText style={{ fontWeight: "bolder" }}>I've been developing software for 2 years. I attended Georgia Tech's full stack coding bootcamp in 2018.
+                <MDBCardText style={{ fontWeight: "bolder", fontSize: "1.57rem" }}>I've been developing software for 2 years. I attended Georgia Tech's full stack coding bootcamp in 2018.
                 After graduating I was hired by Young Consulting and have been working as a full stack .NET MVC Developer.
                 I specialize in Full Stack JavaScript development, Node.js, React, MySQL, MongoDB, C#, ASP.NET, Git, Azure.
                 Im my spare time I enjoy working out and watching Atlanta Braves Baseball.

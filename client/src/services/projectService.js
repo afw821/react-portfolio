@@ -5,21 +5,27 @@ export function getProjects() {
   return http.get(deployedApiUrl + "/projects");
 }
 
-export function addProject(title, description, technologies, deployedUrl, gitHubUrl, imgUrl) {
+export function addProject(
+  title,
+  description,
+  technologies,
+  deployedUrl,
+  gitHubUrl,
+  imgUrl
+) {
   const obj = {
     title,
     description,
     technologies,
     deployedUrl,
     gitHubUrl,
-    imgUrl
-  }
+    imgUrl,
+  };
   return http.post(deployedApiUrl + "/projects", obj);
 }
 
 export function getProjectById(projectId) {
   return http.get(deployedApiUrl + `/projects/${projectId}`);
-
 }
 
 export function deleteProject(id) {

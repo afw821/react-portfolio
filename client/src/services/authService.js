@@ -10,6 +10,8 @@ export async function login(email, password) {
     password,
   });
   localStorage.setItem("token", jwt);
+
+  return jwt;
 }
 
 export function loginWithJwt(jwt) {

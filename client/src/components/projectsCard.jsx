@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Card from './common/card';
 
 class ProjectsCard extends Component {
   render() {
@@ -7,8 +8,9 @@ class ProjectsCard extends Component {
     return (
       <div className="row">
         {projects.map((project) => (
-          <div key={project._id} className="col-6 mb-4">
-            <div className="card min-height">
+          <div key={project._id} className="col-6 mb-4 d-flex justify-content-center">
+            <Card project={project} user={user} onDelete={onDelete} />
+            {/* <div className="card min-height">
               <div className="card-body theme-color">
                 <div className="row">
                   <div className="col-8">
@@ -42,7 +44,7 @@ class ProjectsCard extends Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         ))}
       </div>

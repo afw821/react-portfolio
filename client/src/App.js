@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "./components/navBar";
+import NavBar2 from "./components/navBar2";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./components/home";
 import LoginForm from "./components/loginForm";
@@ -15,6 +16,7 @@ import Logout from "./components/logout";
 class App extends Component {
   state = {
     user: null,
+    activeTab: "Home",
   };
 
   componentDidMount() {
@@ -22,15 +24,37 @@ class App extends Component {
     this.setState({ user });
   }
 
+  handleSetActiveTab = (tab) => {
+    this.setState({ activeTab: tab });
+  };
+
+  handleSetUserAfterLogin = () => {
+    const user = auth.getCurrentUser();
+    this.setState({ user });
+  };
+
   render() {
-    const { user } = this.state;
+    const { user, activeTab } = this.state;
+    // const h100 = {
+    //   height: "calc(92vh)",
+    // };
     const h100 = {
-      height: "calc(92vh)",
+      minHeight: "100vh" /* will cover the 100% of viewport */,
+      overflow: "hidden",
+      display: "block",
+      position: "relative",
+      paddingTop: "85px", //height of navbar + extra padding
+      // paddingBottom: "209px", //this needs to be the height of the footer
+      // backgroundColor: "#fdf9f3" /* height of your footer */,
     };
     return (
       <>
-        <NavBar user={user} />
-        <div className="container-fluid bg-color pt-3" style={h100}>
+        <NavBar2
+          handleSetActiveTab={this.handleSetActiveTab}
+          activeTab={activeTab}
+          user={user}
+        />
+        <div className="container-fluid bg-color" style={h100}>
           <Switch>
             <ProtectedRoute
               path="/project-manager"
@@ -39,7 +63,17 @@ class App extends Component {
             />
             <Route path="/projects/:id" component={ProjectDetails} />
             <Route path="/home" component={Home} />
-            <Route path="/login" component={LoginForm} />
+            {/* <Route path="/login" component={LoginForm} /> */}
+            <Route
+              path="/login"
+              render={(props) => (
+                <LoginForm
+                  {...props}
+                  handleSetActiveTab={this.handleSetActiveTab}
+                  handleSetUserAfterLogin={this.handleSetUserAfterLogin}
+                />
+              )}
+            />
             <Route path="/logout" component={Logout} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={ContactForm} />

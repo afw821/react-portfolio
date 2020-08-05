@@ -12,6 +12,7 @@ import {
   MDBContainer,
 } from "mdbreact";
 import { ThemeProvider } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class ProjectDetails extends Component {
   state = {
@@ -60,9 +61,8 @@ class ProjectDetails extends Component {
     console.log("render project", project);
     return (
       <div className="row">
-        <div className="col-4"></div>
-        <div className="col-4">
-          <MDBCard reverse>
+        <div className="col d-flex justify-content-center">
+          <MDBCard className="form-width" reverse>
             <MDBCardImage
               cascade
               style={{ height: "20rem" }}
@@ -72,30 +72,17 @@ class ProjectDetails extends Component {
               <a href={project.deployedUrl} target="_blank">
                 <MDBCardTitle>{project.title}</MDBCardTitle>
               </a>
-
-              <MDBCard style={{ width: "22rem", marginTop: "1rem" }}>
-                <MDBCardHeader
-                  style={{ color: "black", backgroundColor: "whitesmoke" }}
-                >
-                  Technologies Used
-                </MDBCardHeader>
-                <MDBCardBody>
-                  {project.technologies.map((technology) => (
-                    <MDBCardText>{technology}</MDBCardText>
-                  ))}
-                </MDBCardBody>
-              </MDBCard>
-              <MDBCardText>
-                {project.description}
-              </MDBCardText>
-              <a href="#!" className="icons-sm li-ic ml-1">
-                <MDBIcon fab icon="linkedin-in" />
-              </a>
-              <a href="#!" className="icons-sm tw-ic ml-1">
-                <MDBIcon fab icon="twitter" />
-              </a>
-              <a href="#!" className="icons-sm fb-ic ml-1">
-                <MDBIcon fab icon="facebook-f" />
+              <MDBCardHeader
+                style={{ color: "black", backgroundColor: "whitesmoke" }}
+              >
+                Technologies Used
+              </MDBCardHeader>
+              {project.technologies.map((technology) => (
+                <MDBCardText>{technology}</MDBCardText>
+              ))}
+              <MDBCardText>{project.description}</MDBCardText>
+              <a href={project.gitHubUrl} target="_blank" className="ml-1">
+                <i class="fab fa-github fa-2x"></i>
               </a>
             </MDBCardBody>
           </MDBCard>
