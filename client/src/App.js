@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import NavBar from "./components/navBar";
-import NavBar2 from "./components/navBar2";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./components/home";
 import LoginForm from "./components/loginForm";
@@ -35,9 +34,7 @@ class App extends Component {
 
   render() {
     const { user, activeTab } = this.state;
-    // const h100 = {
-    //   height: "calc(92vh)",
-    // };
+
     const h100 = {
       minHeight: "100vh" /* will cover the 100% of viewport */,
       overflow: "hidden",
@@ -49,7 +46,7 @@ class App extends Component {
     };
     return (
       <>
-        <NavBar2
+        <NavBar
           handleSetActiveTab={this.handleSetActiveTab}
           activeTab={activeTab}
           user={user}
@@ -63,7 +60,6 @@ class App extends Component {
             />
             <Route path="/projects/:id" component={ProjectDetails} />
             <Route path="/home" component={Home} />
-            {/* <Route path="/login" component={LoginForm} /> */}
             <Route
               path="/login"
               render={(props) => (

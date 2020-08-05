@@ -46,7 +46,8 @@ class ContactForm extends Form {
   render() {
     const text = {
       message: "Contact Me",
-      description: "Please fill out the form below to get into contact with me",
+      description:
+        "Please fill out the form below to get into contact with me. I can also be reached at afw821@gmail.com",
     };
 
     return (

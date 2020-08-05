@@ -57,27 +57,50 @@ body {
   height: calc(100vh);
 }
 
+/* // ---------------ClearFix-------------------// */
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 /* medium screen ipads */
-@media only screen and (max-width: 559px) { 
-
-  .form-width{
-    width:75%;
+@media only screen and (max-width: 559px) {
+  .form-width {
+    width: 75%;
   }
-   
-} 
+
+  .card.project-card {
+    width: 96%;
+    float: left;
+    height: 24rem;
+    margin: 0.5rem 2%;
+  }
+}
 
 /* medium screen ipads */
-@media only screen and (min-width: 560px) { 
-
-  .form-width{
-    width:55%;
+@media only screen and (min-width: 560px) {
+  .form-width {
+    width: 55%;
   }
-   
-} 
 
+  .card.project-card {
+    width: 46%;
+    float: left;
+    height: 24rem;
+    margin: 0.5rem 2%;
+  }
+}
+
+/* This is default */
 @media only screen and (min-width: 1140px) {
-  .form-width{
-    width:40%;
+  .form-width {
+    width: 40%;
   }
-} 
+  .card.project-card {
+    width: 21%;
+    float: left;
+    height: 24rem;
+    margin: 0.5rem 2%;
+  }
+}

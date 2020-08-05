@@ -11,8 +11,6 @@ import {
   MDBBtn,
   MDBContainer,
 } from "mdbreact";
-import { ThemeProvider } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 class ProjectDetails extends Component {
   state = {
@@ -58,14 +56,13 @@ class ProjectDetails extends Component {
 
   render() {
     const { data: project } = this.state;
-    console.log("render project", project);
     return (
       <div className="row">
         <div className="col d-flex justify-content-center">
           <MDBCard className="form-width" reverse>
             <MDBCardImage
               cascade
-              style={{ height: "20rem" }}
+              style={{ height: "20rem", width: "100%" }}
               src={project.imgUrl}
             />
             <MDBCardBody cascade className="text-center">
