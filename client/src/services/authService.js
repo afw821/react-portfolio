@@ -5,7 +5,7 @@ import { apiUrl, deployedApiUrl } from "../config.json";
 http.setJwt(getJwt());
 
 export async function login(email, password) {
-  const { data: jwt } = await http.post(apiUrl + "/auth", {
+  const { data: jwt } = await http.post(deployedApiUrl + "/auth", {
     email,
     password,
   });

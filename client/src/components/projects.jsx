@@ -5,6 +5,7 @@ import { paginate } from "../utils/paginate";
 import { getProjects, deleteProject } from "../services/projectService";
 import Paginator from "./common/paginator";
 import _ from "lodash";
+import PopUpModal from "./common/modal";
 
 class Projects extends Component {
   state = {
@@ -12,6 +13,8 @@ class Projects extends Component {
     pageSize: 4,
     currentPage: 1,
     searchQuery: "",
+    show: false,
+    idToDelete: null,
   };
 
   async componentDidMount() {
@@ -38,10 +41,11 @@ class Projects extends Component {
     return { totalCount: filter.length, data: projects };
   };
 
-  handleDelete = async (id) => {
+  handleDelete = async () => {
+    const id = this.state.idToDelete;
     const originalProjects = this.state.projects;
-    const projects = originalProjects.filter(p => p._id !== id);
-    this.setState({ projects });
+    const projects = originalProjects.filter((p) => p._id !== id);
+    this.setState({ projects: projects, idToDelete: null, show: false });
     try {
       await deleteProject(id);
     } catch (ex) {
@@ -51,12 +55,17 @@ class Projects extends Component {
     }
   };
 
+  handleToggleModal = (id) => {
+    this.setState({ show: !this.state.show, idToDelete: id });
+  };
+
   render() {
     const {
       projects: allProjects,
       pageSize,
       currentPage,
       searchQuery,
+      show,
     } = this.state;
     const { user } = this.props;
     const text = {
@@ -67,8 +76,20 @@ class Projects extends Component {
     const { totalCount, data: projects } = this.getPagedData();
     return (
       <>
+        <PopUpModal
+          show={show}
+          header={"Warning"}
+          body={"Are You Sure you want to delete this project?"}
+          deleteBtn={true}
+          onClose={this.handleToggleModal}
+          onDelete={this.handleDelete}
+        />
         <JumboTron message={text.message} description={text.description} />
-        <ProjectsCard projects={projects} onDelete={this.handleDelete} user={user} />
+        <ProjectsCard
+          projects={projects}
+          onDelete={this.handleToggleModal}
+          user={user}
+        />
         <Paginator
           itemsCount={totalCount}
           pageSize={pageSize}
