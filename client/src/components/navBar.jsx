@@ -20,6 +20,13 @@ class NavBar extends Component {
   handleClick = (e) => {
     this.setState({ collapse: !this.state.collapse });
   };
+  handleHover = (e) => {
+    e.currentTarget.style.borderBottom = "2px solid white";
+  };
+
+  handleLeave = (e) => {
+    e.currentTarget.style.borderBottom = "2px solid transparent";
+  };
   render() {
     const { user, activeTab, handleSetActiveTab } = this.props;
     const { collapse, isWideEnough } = this.state;
@@ -41,44 +48,74 @@ class NavBar extends Component {
         {!isWideEnough && <MDBNavbarToggler onClick={this.handleClick} />}
         <MDBCollapse isOpen={collapse} navbar>
           <MDBNavbarNav left>
-            <MDBNavItem
-              onClick={() => handleSetActiveTab("Home")}
-              active={activeTab === "Home"}
-            >
-              <MDBNavLink name="Home" to="/home">
+            <MDBNavItem onClick={() => handleSetActiveTab("Home")}>
+              <MDBNavLink
+                onMouseEnter={(e) => this.handleHover(e)}
+                onMouseLeave={(e) => this.handleLeave(e)}
+                className="brd_transparent"
+                style={activeTab === "Home" ? { color: "#f6b519" } : { "": "" }}
+                name="Home"
+                to="/home"
+              >
                 HOME
               </MDBNavLink>
             </MDBNavItem>
-            <MDBNavItem
-              onClick={() => handleSetActiveTab("About")}
-              active={activeTab === "About"}
-            >
-              <MDBNavLink name="About" to="/about">
+            <MDBNavItem onClick={() => handleSetActiveTab("About")}>
+              <MDBNavLink
+                onMouseEnter={(e) => this.handleHover(e)}
+                onMouseLeave={(e) => this.handleLeave(e)}
+                className="brd_transparent"
+                style={
+                  activeTab === "About" ? { color: "#f6b519" } : { "": "" }
+                }
+                name="About"
+                to="/about"
+              >
                 ABOUT
               </MDBNavLink>
             </MDBNavItem>
-            <MDBNavItem
-              onClick={() => handleSetActiveTab("Projects")}
-              active={activeTab === "Projects"}
-            >
-              <MDBNavLink name="Projects" to="/projects">
+            <MDBNavItem onClick={() => handleSetActiveTab("Projects")}>
+              <MDBNavLink
+                onMouseEnter={(e) => this.handleHover(e)}
+                onMouseLeave={(e) => this.handleLeave(e)}
+                className="brd_transparent"
+                style={
+                  activeTab === "Projects" ? { color: "#f6b519" } : { "": "" }
+                }
+                name="Projects"
+                to="/projects"
+              >
                 PROJECTS
               </MDBNavLink>
             </MDBNavItem>
-            <MDBNavItem
-              onClick={() => handleSetActiveTab("Contact")}
-              active={activeTab === "Contact"}
-            >
-              <MDBNavLink name="Contact" to="/contact">
+            <MDBNavItem onClick={() => handleSetActiveTab("Contact")}>
+              <MDBNavLink
+                onMouseEnter={(e) => this.handleHover(e)}
+                onMouseLeave={(e) => this.handleLeave(e)}
+                className="brd_transparent"
+                style={
+                  activeTab === "Contact" ? { color: "#f6b519" } : { "": "" }
+                }
+                name="Contact"
+                to="/contact"
+              >
                 CONTACT
               </MDBNavLink>
             </MDBNavItem>
             {user && (
-              <MDBNavItem
-                onClick={() => handleSetActiveTab("Project_Manager")}
-                active={activeTab === "Project_Manager"}
-              >
-                <MDBNavLink name="Project_Manager" to="/project-manager">
+              <MDBNavItem onClick={() => handleSetActiveTab("Project_Manager")}>
+                <MDBNavLink
+                  onMouseEnter={(e) => this.handleHover(e)}
+                  onMouseLeave={(e) => this.handleLeave(e)}
+                  className="brd_transparent"
+                  style={
+                    activeTab === "Project_Manager"
+                      ? { color: "#f6b519" }
+                      : { "": "" }
+                  }
+                  name="Project_Manager"
+                  to="/project-manager"
+                >
                   PROJECT MANAGER
                 </MDBNavLink>
               </MDBNavItem>
@@ -86,18 +123,33 @@ class NavBar extends Component {
           </MDBNavbarNav>
           <MDBNavbarNav right>
             {!user && (
-              <MDBNavItem
-                onClick={() => handleSetActiveTab("Login")}
-                active={activeTab === "Login"}
-              >
-                <MDBNavLink name="Login" to="/login">
+              <MDBNavItem onClick={() => handleSetActiveTab("Login")}>
+                <MDBNavLink
+                  onMouseEnter={(e) => this.handleHover(e)}
+                  onMouseLeave={(e) => this.handleLeave(e)}
+                  className="brd_transparent"
+                  style={
+                    activeTab === "Login" ? { color: "#f6b519" } : { "": "" }
+                  }
+                  name="Login"
+                  to="/login"
+                >
                   LOGIN
                 </MDBNavLink>
               </MDBNavItem>
             )}
             {user && (
-              <MDBNavItem active={activeTab === "Logout"}>
-                <MDBNavLink name="Logout" to="/logout">
+              <MDBNavItem>
+                <MDBNavLink
+                  onMouseEnter={(e) => this.handleHover(e)}
+                  onMouseLeave={(e) => this.handleLeave(e)}
+                  className="brd_transparent"
+                  style={
+                    activeTab === "Logout" ? { color: "#f6b519" } : { "": "" }
+                  }
+                  name="Logout"
+                  to="/logout"
+                >
                   LOGOUT
                 </MDBNavLink>
               </MDBNavItem>
