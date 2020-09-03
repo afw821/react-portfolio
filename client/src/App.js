@@ -12,6 +12,8 @@ import auth from "./services/authService";
 import ProtectedRoute from "./components/common/protectedRoute";
 import ProjectForm from "./components/projectForm";
 import Logout from "./components/logout";
+import { activeTabRefresh } from "./utils/activeTabRefresh";
+
 class App extends Component {
   state = {
     user: null,
@@ -21,6 +23,15 @@ class App extends Component {
   componentDidMount() {
     const user = auth.getCurrentUser();
     this.setState({ user });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const activeTab = this.state.activeTab;
+    let location = window.location.pathname;
+    const lastIndex = location.lastIndexOf("/");
+    const handler = this.handleSetActiveTab;
+
+    activeTabRefresh(activeTab, location, lastIndex, handler);
   }
 
   handleSetActiveTab = (tab) => {
