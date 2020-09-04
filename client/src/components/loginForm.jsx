@@ -22,8 +22,8 @@ class LoginForm extends Form {
       const jwt = await login(data.username, data.password);
       if (jwt) {
         handleSetUserAfterLogin();
-        handleSetActiveTab("Project_Manager");
         this.props.history.push("/project-manager"); //window.location = "/project-manager";
+        handleSetActiveTab("Project_Manager");
       }
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {

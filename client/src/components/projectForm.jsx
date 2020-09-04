@@ -89,7 +89,7 @@ class ProjectForm extends Form {
         <div className="row">
           <div className="col d-flex justify-content-center">
             <form
-              className="pb-5 pl-5 pr-5 pt-4 login-form form-width"
+              className="pb-5 pl-5 pr-5 pt-4 login-form form-width card-mb"
               onSubmit={this.handleSubmit}
             >
               {this.renderInput("title", "Title")}

@@ -70,7 +70,8 @@ class Projects extends Component {
     const { user } = this.props;
     const text = {
       message: "My Projects",
-      description: "Below is a complete list of the projects I have worked on",
+      description: `Below is a complete list of the projects I have created or contributed to. 
+        I am a full stack JavaScript developer and specialize in React, Node, MySQL, MongoDB, C# and ASP.NET`,
     };
 
     const { totalCount, data: projects } = this.getPagedData();

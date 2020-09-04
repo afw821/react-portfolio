@@ -9,6 +9,7 @@ import {
   MDBRow,
   MDBCol,
   MDBIcon,
+  MDBBtn,
 } from "mdbreact";
 
 const Card = ({ project, user, onDelete }) => {
@@ -33,11 +34,10 @@ const Card = ({ project, user, onDelete }) => {
         <hr />
         <div className="row">
           <div className="col d-flex justify-content-center">
-            <Link
-              to={`/projects/${project._id}`}
-              className="btn btn-info btn-sm mr-4"
-            >
-              Details
+            <Link to={`/projects/${project._id}`}>
+              <MDBBtn color="indigo" size="sm">
+                <MDBIcon far icon="clone" className="left" /> Project Details
+              </MDBBtn>
             </Link>
             {user && user.isAdmin && (
               <button

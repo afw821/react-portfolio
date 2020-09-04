@@ -16,9 +16,8 @@ const Home = () => {
         description={text.description}
       />
       <div className="row">
-        {/* <div className="col-4"></div> */}
         <div className="col d-flex justify-content-center">
-          <div className="card card-cascade wider form-width">
+          <div className="card card-cascade wider form-width card-mb">
             <div className="view view-cascade overlay">
               <img
                 className="card-img-top"

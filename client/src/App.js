@@ -28,10 +28,9 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const activeTab = this.state.activeTab;
     let location = window.location.pathname;
-    const lastIndex = location.lastIndexOf("/");
     const handler = this.handleSetActiveTab;
 
-    activeTabRefresh(activeTab, location, lastIndex, handler);
+    activeTabRefresh(activeTab, location, handler);
   }
 
   handleSetActiveTab = (tab) => {

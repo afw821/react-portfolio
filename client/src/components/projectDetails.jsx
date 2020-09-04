@@ -42,12 +42,8 @@ class ProjectDetails extends Component {
   async componentDidMount() {
     try {
       const id = this.props.match.params.id;
-      console.log("CDM  id", id);
       const { data: project } = await getProjectById(id);
-      console.log("project from CDM", project);
       this.setState({ data: this.mapToViewModel(project) });
-
-      console.log("this state from CDM", this.state.data);
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
         this.props.history.replace("/not-found");
@@ -59,7 +55,7 @@ class ProjectDetails extends Component {
     return (
       <div className="row">
         <div className="col d-flex justify-content-center">
-          <MDBCard className="form-width" reverse>
+          <MDBCard className="form-width card-mb" reverse>
             <MDBCardImage
               cascade
               style={{ height: "20rem", width: "100%" }}
