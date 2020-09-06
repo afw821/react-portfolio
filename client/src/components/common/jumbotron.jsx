@@ -1,8 +1,11 @@
 import React from "react";
-
+import { MDBBtn, MDBIcon } from "mdbreact";
 const JumboTron = (props) => {
   return (
-    <div style={{ backgroundColor: "whitesmoke" }} className="jumbotron jumbotron-fluid">
+    <div
+      style={{ backgroundColor: "whitesmoke" }}
+      className="jumbotron jumbotron-fluid"
+    >
       <div className="container">
         <h1 className="display-4 d-flex justify-content-center" id="message">
           {props.message}
@@ -13,7 +16,9 @@ const JumboTron = (props) => {
         {props.resume && (
           <div className="d-flex justify-content-center">
             <a href={props.resume} download>
-              <button className="btn btn-info"> Download My Resume</button>
+              <MDBBtn outline color="primary" className="waves-effect">
+                Download My Resume <MDBIcon icon="download" />
+              </MDBBtn>
             </a>
           </div>
         )}
