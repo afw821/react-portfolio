@@ -44,6 +44,7 @@ class NavBar extends Component {
           <Link className="navbar-brand" to="/">
             Alex Watkins
           </Link>
+          <MDBIcon icon="laptop-code" />
         </MDBNavbarBrand>
         {!isWideEnough && <MDBNavbarToggler onClick={this.handleClick} />}
         <MDBCollapse isOpen={collapse} navbar>

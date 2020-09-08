@@ -44,6 +44,10 @@ body {
 .h-100 {
   height: calc(100vh);
 }
+.black-text {
+  color: black;
+  font-weight: bolder;
+}
 
 .card-mb {
   margin-bottom: 5%;

@@ -1,16 +1,6 @@
 import React, { Component } from "react";
 import { getProjectById } from "../services/projectService";
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
-  MDBIcon,
-  MDBCardHeader,
-  MDBBtn,
-  MDBContainer,
-} from "mdbreact";
+import { MDBIcon, MDBRow, MDBCol } from "mdbreact";
 
 class ProjectDetails extends Component {
   state = {
@@ -53,34 +43,85 @@ class ProjectDetails extends Component {
   render() {
     const { data: project } = this.state;
     return (
-      <div className="row">
-        <div className="col d-flex justify-content-center">
-          <MDBCard className="form-width card-mb" reverse>
-            <MDBCardImage
-              cascade
-              style={{ height: "20rem", width: "100%" }}
+      <section className="my-5">
+        <a href={project.deployedUrl} target="_blank">
+          <h2 className="h1-responsive font-weight-bold text-center my-5">
+            {project.title}
+          </h2>
+        </a>
+
+        <MDBRow>
+          <MDBCol lg="5" className="mb-lg-0 mb-5">
+            <img
               src={project.imgUrl}
+              alt={`${project.title} picture`}
+              className="img-fluid rounded z-depth-1"
             />
-            <MDBCardBody cascade className="text-center">
-              <a href={project.deployedUrl} target="_blank">
-                <MDBCardTitle>{project.title}</MDBCardTitle>
-              </a>
-              <MDBCardHeader
-                style={{ color: "black", backgroundColor: "whitesmoke" }}
-              >
-                Technologies Used
-              </MDBCardHeader>
-              {project.technologies.map((technology) => (
-                <MDBCardText>{technology}</MDBCardText>
-              ))}
-              <MDBCardText>{project.description}</MDBCardText>
-              <a href={project.gitHubUrl} target="_blank" className="ml-1">
-                <i class="fab fa-github fa-2x"></i>
-              </a>
-            </MDBCardBody>
-          </MDBCard>
-        </div>
-      </div>
+          </MDBCol>
+          <MDBCol lg="7">
+            <MDBRow className="mb-3">
+              <MDBCol md="1" size="2">
+                <MDBIcon icon="code-branch" size="2x" className="blue-text" />
+              </MDBCol>
+              <MDBCol md="11" size="10">
+                <h5 className="font-weight-bold mb-3">Project Description</h5>
+                <p className="black-text">{project.description}</p>
+              </MDBCol>
+            </MDBRow>
+            <MDBRow className="mb-3">
+              <MDBCol md="1" size="2">
+                <MDBIcon icon="code" size="2x" className="red-text" />
+              </MDBCol>
+              <MDBCol md="11" size="10">
+                <h5 className="font-weight-bold mb-3">Technologies Used</h5>
+                <div className="black-text d-flex flex-row flex-wrap">
+                  {project.technologies.map((technology, i, arr) => (
+                    <div className="mr-2">
+                      {technology}
+                      {i + 1 === arr.length ? "" : ","}
+                    </div>
+                  ))}
+                </div>
+              </MDBCol>
+            </MDBRow>
+            <MDBRow className="mb-3">
+              <MDBCol md="1" size="2">
+                <MDBIcon icon="link" size="2x" className="blue-text" />
+              </MDBCol>
+              <MDBCol md="11" size="10">
+                <h5 className="font-weight-bold mb-3">Links</h5>
+                <div className="black-text d-flex flex-row">
+                  <div className="d-flex flex-column">
+                    <a
+                      href={project.gitHubUrl}
+                      target="_blank"
+                      className="ml-1 mr-5"
+                    >
+                      <i className="fab fa-github fa-2x"></i>
+                    </a>
+                    <small>GitHub</small>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <a
+                      href={project.deployedUrl}
+                      target="_blank"
+                      className="ml-1"
+                    >
+                      <MDBIcon
+                        className="mr-3 ml-3"
+                        fab
+                        icon="chrome"
+                        size="2x"
+                      />
+                    </a>
+                    <small>Deployed Site</small>
+                  </div>
+                </div>
+              </MDBCol>
+            </MDBRow>
+          </MDBCol>
+        </MDBRow>
+      </section>
     );
   }
 }

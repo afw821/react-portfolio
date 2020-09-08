@@ -18,6 +18,7 @@ class App extends Component {
   state = {
     user: null,
     activeTab: "Home",
+    clientWidth: document.documentElement.clientWidth,
   };
 
   componentDidMount() {
@@ -42,8 +43,13 @@ class App extends Component {
     this.setState({ user });
   };
 
+  displayWindowSize = () => {
+    let clientWidth = document.documentElement.clientWidth;
+    this.setState({ clientWidth });
+  };
+
   render() {
-    const { user, activeTab } = this.state;
+    const { user, activeTab, clientWidth } = this.state;
 
     const h100 = {
       minHeight: "100vh" /* will cover the 100% of viewport */,
@@ -54,6 +60,9 @@ class App extends Component {
       // paddingBottom: "209px", //this needs to be the height of the footer
       // backgroundColor: "#fdf9f3" /* height of your footer */,
     };
+
+    window.addEventListener("resize", this.displayWindowSize);
+
     return (
       <>
         <NavBar
@@ -81,7 +90,17 @@ class App extends Component {
               )}
             />
             <Route path="/logout" component={Logout} />
-            <Route path="/about" component={About} />
+            <Route
+              path="/about"
+              render={(props) => (
+                <About
+                  {...props}
+                  activeTab={activeTab}
+                  handleSetActiveTab={this.handleSetActiveTab}
+                  clientWidth={clientWidth}
+                />
+              )}
+            />
             <Route path="/contact" component={ContactForm} />
             <Route
               path="/projects"

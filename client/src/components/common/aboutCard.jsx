@@ -4,15 +4,23 @@ import {
   MDBContainer,
   MDBRow,
   MDBCol,
-  MDBIcon,
   MDBCardTitle,
   MDBCardImage,
   MDBCardBody,
   MDBCardText,
-  MDBBtn,
 } from "mdbreact";
+import { Link } from "react-router-dom";
+import Icons from "./icons";
+import TechIcon from "./techIcons";
+import Button from "./button";
 
-const aboutCard = () => {
+const aboutCard = ({
+  activeTab,
+  handleSetActiveTab,
+  clientWidth,
+  aboutCardText,
+  aboutCardTitle,
+}) => {
   return (
     <MDBContainer className="mt-5 text-center">
       <MDBRow>
@@ -28,152 +36,96 @@ const aboutCard = () => {
             />
             <MDBCardBody>
               <MDBCardTitle className="indigo-text h5 m-4">
-                Full-Stack Software Developer at Young Consulting
+                {aboutCardTitle}
               </MDBCardTitle>
-              <MDBCardText>
-                I've been developing software for 2 years. I attended Georgia
-                Tech's full stack coding bootcamp in 2018. After graduating I
-                was hired by Young Consulting and have been working as a full
-                stack .NET MVC Developer. I specialize in Full Stack JavaScript
-                development, Node.js, React, MySQL, MongoDB, C#, ASP.NET, Git,
-                Azure. Im my spare time I enjoy working out and watching Atlanta
-                Braves Baseball and exploring the Smoky Mountains.
-              </MDBCardText>
+              <MDBCardText>{aboutCardText}</MDBCardText>
               <MDBCardTitle className="indigo-text h5 m-4">
                 Technologies I Use
               </MDBCardTitle>
               <MDBCardText>
-                <div className="row">
-                  <div className="col d-flex justify-content-center">
-                    <div className="d-flex flex-column">
-                      <MDBIcon
-                        className="mr-3 ml-3"
-                        style={{ fontSize: "3rem" }}
-                        fab
-                        icon="react"
-                      />
-                      <small>React.js</small>
-                    </div>
-                    <div className="d-flex flex-column">
-                      <MDBIcon
-                        className="mr-3 ml-3"
-                        style={{ fontSize: "3rem" }}
-                        fab
-                        icon="js-square"
-                      />
-                      <small>JavaScript</small>
-                    </div>
-                    <div className="d-flex flex-column">
-                      <MDBIcon
-                        className="mr-3 ml-3"
-                        style={{ fontSize: "3rem" }}
-                        fab
-                        icon="node"
-                      />
-                      <small>Node.js</small>
-                    </div>
-                    <div className="d-flex flex-column">
-                      <MDBIcon
-                        className="mr-3 ml-3"
-                        style={{ fontSize: "3rem" }}
-                        icon="database"
-                      />
-                      <small>MySQL</small>
-                    </div>
-                    <div className="d-flex flex-column">
-                      <MDBIcon
-                        className="mr-3 ml-3"
-                        style={{ fontSize: "3rem" }}
-                        fab
-                        icon="git-alt"
-                      />
-                      <small>Git</small>
-                    </div>
-                    <div className="d-flex flex-row">
-                      <MDBIcon className="mr-1" style={{ fontSize: "3rem" }}>
-                        C
-                      </MDBIcon>
-                      <MDBIcon
-                        className="mr-3"
-                        style={{ fontSize: "2rem" }}
-                        icon="hashtag"
-                      />
-                    </div>
+                <div
+                  className={`row ${
+                    clientWidth < 768 ? "d-flex justify-content-center" : ""
+                  }`}
+                >
+                  <div
+                    className={`${
+                      clientWidth > 767 ? "col" : "col-6"
+                    } d-flex justify-content-center`}
+                  >
+                    <TechIcon icon="react" text="React.js" isFab={true} />
+                    <TechIcon icon="js-square" text="JavaScript" isFab={true} />
+                    <TechIcon icon="node" text="Node.js" isFab={true} />
+                    <TechIcon icon="database" text="MySQL" isFab={false} />
+                    <TechIcon icon="microsoft" text="C# .NET" isFab={true} />
 
-                    <div className="d-flex flex-column">
-                      <MDBIcon
-                        className="mr-3 ml-3"
-                        style={{ fontSize: "3rem" }}
-                        fab
-                        icon="bootstrap"
-                      />
-
-                      <small>Bootstrap</small>
-                    </div>
-                    <div className="d-flex flex-column">
-                      <MDBIcon
-                        className="mr-3 ml-3"
-                        style={{ fontSize: "3rem" }}
-                        fab
-                        icon="css3-alt"
-                      />
-                      <small>css</small>
-                    </div>
-                    <div className="d-flex flex-column">
-                      <MDBIcon
-                        className="ml-3"
-                        style={{ fontSize: "2rem" }}
-                        fab
-                        icon="npm"
-                      />
-                      <small>node package manager</small>
-                    </div>
+                    {clientWidth < 768 ? ( //row gets too small hide these and render them in the row below
+                      ""
+                    ) : (
+                      <>
+                        <TechIcon icon="git-alt" text="Git" isFab={true} />
+                        <TechIcon
+                          icon="bootstrap"
+                          text="Bootstrap"
+                          isFab={true}
+                        />
+                        <TechIcon icon="css3-alt" text="css" isFab={true} />
+                        <TechIcon
+                          icon="npm"
+                          text="Node Package Manager"
+                          isFab={true}
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
+
+                {clientWidth > 767 ? (
+                  ""
+                ) : (
+                  <div className="row d-flex justify-content-center">
+                    <div className="col d-flex justify-content-center">
+                      <>
+                        <TechIcon icon="git-alt" text="Git" isFab={true} />
+                        <TechIcon
+                          icon="bootstrap"
+                          text="Bootstrap"
+                          isFab={true}
+                        />
+                        <TechIcon icon="css3-alt" text="css" isFab={true} />
+                        <TechIcon
+                          icon="npm"
+                          text="Node Package Manager"
+                          isFab={true}
+                        />
+                      </>
+                    </div>
+                  </div>
+                )}
               </MDBCardText>
               <hr className="my-4" />
               <div className="pt-2">
-                <MDBBtn color="primary" className="waves-effect">
-                  Projects <MDBIcon icon="code" />
-                </MDBBtn>
-                <MDBBtn outline color="primary" className="waves-effect">
-                  Contact <MDBIcon icon="envelope" />
-                </MDBBtn>
+                <Button
+                  icon="code"
+                  to="/projects"
+                  handleSetActiveTab={handleSetActiveTab}
+                  color="primary"
+                  btnText="Projects"
+                  activeTab="Projects"
+                />
+                <Button
+                  icon="envelope"
+                  to="/contact"
+                  handleSetActiveTab={handleSetActiveTab}
+                  color="primary"
+                  btnText="Contact"
+                  activeTab="Contact"
+                />
               </div>
 
               <MDBCol className="d-flex justify-content-center mt-4" md="12">
                 <MDBCol md="3" className="d-flex justify-content-around">
-                  <a
-                    href="https://www.linkedin.com/in/alex-watkins-b1a52182/"
-                    target="_blank"
-                  >
-                    <MDBIcon
-                      fab
-                      icon="linkedin-in"
-                      className="grey-text"
-                      size="lg"
-                    />
-                  </a>
-                  <a href="https://github.com/afw821" target="_blank">
-                    <MDBIcon
-                      fab
-                      icon="github"
-                      className="grey-text"
-                      size="lg"
-                    />
-                  </a>
-
-                  <a
-                    href="https://www.facebook.com/profile.php?id=7021411"
-                    target="_blank"
-                  >
-                    <MDBIcon
-                      fab
-                      icon="facebook-f"
-                      className="grey-text"
-                      size="lg"
-                    />
-                  </a>
+                  <Icons />
                 </MDBCol>
               </MDBCol>
             </MDBCardBody>

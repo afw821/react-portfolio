@@ -1,5 +1,7 @@
 import React from "react";
 import { MDBBtn, MDBIcon } from "mdbreact";
+import Icons from "./icons";
+
 const JumboTron = (props) => {
   return (
     <div
@@ -22,6 +24,7 @@ const JumboTron = (props) => {
             </a>
           </div>
         )}
+        {props.icons && <Icons />}
       </div>
     </div>
   );
