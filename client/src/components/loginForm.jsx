@@ -53,7 +53,7 @@ class LoginForm extends Form {
               {this.renderInput("password", "Password", "password")}
               <div className="row">
                 <div className="col d-flex justify-content-center">
-                  {this.renderButton("Login")}
+                  {this.renderMDBBtn("Login", "info", "lock", "submit")}
                 </div>
               </div>
             </form>

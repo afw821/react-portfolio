@@ -3,6 +3,8 @@ import Joi from "joi-browser";
 import Input from "./input";
 import TextArea from "./textArea";
 import CheckBox from "./checkbox";
+import { MDBBtn, MDBIcon } from "mdbreact";
+
 class Form extends Component {
   state = {
     data: {},
@@ -62,6 +64,14 @@ class Form extends Component {
 
   renderButton(label, isValidator) {
     return <button className="btn btn-info btn-sm">{label}</button>;
+  }
+
+  renderMDBBtn(btnText, color, icon, type) {
+    return (
+      <MDBBtn type={type} color={color}>
+        {btnText} <MDBIcon icon={icon} />
+      </MDBBtn>
+    );
   }
 
   renderInput(name, label, type = "text") {

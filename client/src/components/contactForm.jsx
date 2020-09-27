@@ -70,7 +70,7 @@ class ContactForm extends Form {
               {this.renderTextArea("message", "Message", "text", 5)}
               <div className="row">
                 <div className="col d-flex justify-content-center">
-                  {this.renderButton("Submit")}
+                  {this.renderMDBBtn("Submit", "info", "envelope", "submit")}
                 </div>
               </div>
             </form>

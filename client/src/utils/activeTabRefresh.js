@@ -1,4 +1,5 @@
-export function activeTabRefresh(activeTab, location, handler) {
+export function activeTabRefresh(activeTab, location, lastIndex, handler) {
+  if (lastIndex > 0) location = location.substring(0, lastIndex);
   switch (location) {
     case "/home":
       if (activeTab !== "Home") return handler("Home");
