@@ -76,7 +76,7 @@ class ProjectDetails extends Component {
                 <h5 className="font-weight-bold mb-3">Technologies Used</h5>
                 <div className="black-text d-flex flex-row flex-wrap">
                   {project.technologies.map((technology, i, arr) => (
-                    <div className="mr-2">
+                    <div key={project._id} className="mr-2">
                       {technology}
                       {i + 1 === arr.length ? "" : ","}
                     </div>

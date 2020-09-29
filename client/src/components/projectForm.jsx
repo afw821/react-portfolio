@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
-import JumboTron from "./common/jumbotron";
 import { getTechnologies } from "./../services/technologyService";
 import { addProject } from "../services/projectService";
-import PopUpModal from "./common/modal";
 
 class ProjectForm extends Form {
   state = {
@@ -68,45 +66,32 @@ class ProjectForm extends Form {
     } catch (ex) {}
   };
 
-  handleModalClick = () => {
-    this.setState({ show: !this.state.show });
-  };
   render() {
-    const text = {
-      message: "Project Manager",
-      description: "Add Projects Below",
-    };
-    const technologies = this.state.technologies;
+    const { technologies } = this.state;
+    const { clientWidth } = this.props;
     return (
-      <>
-        <JumboTron message={text.message} description={text.description} />
-        <PopUpModal
-          show={this.state.show}
-          header="Thank You"
-          body="Project Successfully Added"
-          onClose={this.handleModalClick}
-        />
-        <div className="row">
-          <div className="col d-flex justify-content-center">
-            <form
-              className="pb-5 pl-5 pr-5 pt-4 login-form form-width card-mb"
-              onSubmit={this.handleSubmit}
-            >
-              {this.renderInput("title", "Title")}
-              {this.renderTextArea("description", "Description", "text", 5)}
-              {this.renderCheckbox(technologies, "Technology")}
-              {this.renderInput("deployedUrl", "Deployed Link")}
-              {this.renderInput("gitHubUrl", "GitHub Link")}
-              {this.renderInput("imgUrl", "Image Link")}
-              <div className="row">
-                <div className="col d-flex justify-content-center">
-                  {this.renderButton("Submit")}
-                </div>
-              </div>
-            </form>
+      <div
+        className={`${
+          clientWidth > 683 ? "col-10" : "col-12"
+        } d-flex justify-content-center`}
+      >
+        <form
+          className="pb-5 pl-5 pr-5 pt-4 login-form project-form-width card-mb"
+          onSubmit={this.handleSubmit}
+        >
+          {this.renderInput("title", "Title")}
+          {this.renderTextArea("description", "Description", "text", 5)}
+          {this.renderCheckbox(technologies, "Technology")}
+          {this.renderInput("deployedUrl", "Deployed Link")}
+          {this.renderInput("gitHubUrl", "GitHub Link")}
+          {this.renderInput("imgUrl", "Image Link")}
+          <div className="row">
+            <div className="col d-flex justify-content-center">
+              {this.renderButton("Submit")}
+            </div>
           </div>
-        </div>
-      </>
+        </form>
+      </div>
     );
   }
 }

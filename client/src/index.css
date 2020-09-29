@@ -17,6 +17,16 @@ body {
   background-color: white;
 }
 
+.list-group-item.active-tab {
+  z-index: 2;
+  color: black;
+  background-color: whitesmoke;
+  border-left: 3px solid black;
+}
+.grabbable {
+  cursor: grab;
+}
+
 .navbar {
   background-color: #333333;
   color: white;
@@ -66,11 +76,19 @@ body {
     width: 75%;
   }
 
+  .project-form-width {
+    width: 85%;
+  }
+
   .card.project-card {
     width: 96%;
     float: left;
     height: 24rem;
     margin: 0.5rem 2%;
+  }
+
+  .tab-width {
+    width: 125%;
   }
 }
 
@@ -80,11 +98,19 @@ body {
     width: 55%;
   }
 
+  .project-form-width {
+    width: 75%;
+  }
+
   .card.project-card {
     width: 46%;
     float: left;
     height: 24rem;
     margin: 0.5rem 2%;
+  }
+
+  .tab-width {
+    width: 175%;
   }
 }
 
@@ -93,10 +119,18 @@ body {
   .form-width {
     width: 40%;
   }
+
+  .project-form-width {
+    width: 55%;
+  }
   .card.project-card {
     width: 21%;
     float: left;
     height: 24rem;
     margin: 0.5rem 2%;
+  }
+
+  .tab-width {
+    width: 125%;
   }
 }

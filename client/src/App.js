@@ -10,9 +10,9 @@ import NotFound from "./components/notFound";
 import ProjectDetails from "./components/projectDetails";
 import auth from "./services/authService";
 import ProtectedRoute from "./components/common/protectedRoute";
-import ProjectForm from "./components/projectForm";
 import Logout from "./components/logout";
 import { activeTabRefresh } from "./utils/activeTabRefresh";
+import ProjectManager from "./components/projectManager";
 
 class App extends Component {
   state = {
@@ -76,7 +76,9 @@ class App extends Component {
             <ProtectedRoute
               path="/project-manager"
               exact
-              component={ProjectForm}
+              render={(props) => (
+                <ProjectManager {...props} clientWidth={clientWidth} />
+              )}
             />
             <Route path="/projects/:id" component={ProjectDetails} />
             <Route path="/home" component={Home} />

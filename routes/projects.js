@@ -16,6 +16,7 @@ router.get(
 
 router.post(
   "/",
+  [auth, admin],
   ash(async (req, res) => {
     const {
       title,
@@ -38,6 +39,43 @@ router.post(
     await project.save();
 
     res.send({ status: true, project });
+  })
+);
+
+router.put(
+  "/:_id",
+  [auth, admin],
+  ash(async (req, res) => {
+    const { _id } = req.params;
+    const {
+      technologies,
+      gitHubUrl,
+      imgUrl,
+      sequence,
+      title,
+      deployedUrl,
+      description,
+    } = req.body;
+
+    const project = await Project.findByIdAndUpdate(
+      _id,
+      {
+        title: title,
+        technologies: technologies,
+        gitHubUrl: gitHubUrl,
+        sequence: sequence,
+        imgUrl: imgUrl,
+        deployedUrl: deployedUrl,
+        description: description,
+      },
+      { new: true }
+    );
+
+    if (!project)
+      return res
+        .status(404)
+        .send("The project with the given ID was not found.");
+    res.send(project);
   })
 );
 
