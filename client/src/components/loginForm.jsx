@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import JumboTron from "./common/jumbotron";
 import Joi from "joi-browser";
 import Form from "./common/form";
+import http from "../services/httpService";
 import { login, getCurrentUser } from "../services/authService";
+import { getJwt } from "./../services/authService";
 
 class LoginForm extends Form {
   state = {
@@ -23,6 +25,7 @@ class LoginForm extends Form {
       if (jwt) {
         handleSetUserAfterLogin();
         this.props.history.push("/project-manager"); //window.location = "/project-manager";
+        http.setJwt(getJwt());
         handleSetActiveTab("Project_Manager");
       }
     } catch (ex) {

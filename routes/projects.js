@@ -27,6 +27,8 @@ router.post(
       imgUrl,
     } = req.body;
 
+    const count = await Project.countDocuments();
+
     let project = new Project({
       title: title,
       description: description,
@@ -34,6 +36,7 @@ router.post(
       deployedUrl: deployedUrl,
       gitHubUrl: gitHubUrl,
       imgUrl: imgUrl,
+      sequence: count + 1,
     });
 
     await project.save();
